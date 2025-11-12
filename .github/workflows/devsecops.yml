@@ -10,12 +10,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
+      - name: Install Bandit
+        run: pip install bandit
 
-      - name: Run Snyk Scan
-        uses: snyk/actions@master
-        with:
-          command: test
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYKTOKEN }}
+      - name: Run Bandit Scan
+        run: bandit -r .
